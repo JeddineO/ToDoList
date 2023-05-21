@@ -1,3 +1,39 @@
+To-Do List App
+This is a simple to-do list application built with React.js and JSON Server. It allows users to manage their tasks by adding new tasks, marking tasks as completed, deleting tasks, and searching for tasks based on the title.
+
+Prerequisites
+Before running this application, make sure you have the following installed:
+
+Node.js
+JSON Server
+Installation
+Clone the repository:
+bash
+Copy code
+git clone https://github.com/your-username/todo-list-app.git
+Install dependencies:
+bash
+Copy code
+cd todo-list-app
+npm install
+Start JSON Server:
+css
+Copy code
+json-server --watch db.json --port 8000
+Start the React development server:
+sql
+Copy code
+npm start
+Open your browser and navigate to http://localhost:3000 to access the application.
+Usage
+Add a new task: Enter the task description in the "New task..." input field and click the "Add" button. The task will be added to the to-do list.
+Mark a task as completed: Click on the checkbox next to the task title. The task will be marked as completed and visually indicated.
+Delete a task: Click on the delete button (trash icon) next to the task. The task will be deleted from the list.
+Search for tasks: Enter a keyword in the search input field to filter the tasks based on the title. The list will update dynamically to display only the tasks that match the search criteria.
+Technologies Used
+React.js: A JavaScript library for building user interfaces.
+JSON Server: A simple and lightweight JSON-based data server.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

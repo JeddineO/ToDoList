@@ -1,23 +1,56 @@
-import logo from './logo.svg';
+import { useEffect, useState } from "react";
 import './App.css';
+import Search from "./Search";
+import List from './Liste';
+
 
 function App() {
+
+  const [newListe, setNList] = useState(null);
+  const [isPending, setPending] = useState(true);
+  const [search, setSearch] = useState(false);
+  const [tmp, setTmp] = useState(null);
+
+  useEffect(() => {
+
+    setTimeout(() => {
+      fetch('http://localhost:8000/Liste')
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setNList(data)
+        });
+      setPending(false);
+
+    }, 2000
+
+    )
+
+  }, [newListe]);
+
+  function Recherche(value) {
+
+    setSearch(true);
+    if (value == "") {
+      setSearch(false);
+    }
+
+    const tmp1 = newListe.filter(elm => elm.title.toLowerCase().includes(value.toLowerCase()));
+    setTmp(tmp1);
+    console.log(tmp, search, value);
+  }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isPending && <div id="Load">Loading...</div>}
+      {!isPending && <h3>To do list</h3>}
+      {!isPending && <Search p2={Recherche} />}
+      {search && newListe && <List tasks={tmp} />}
+      {!search && newListe && <List tasks={newListe} p2={Recherche} />}
+
     </div>
   );
 }
